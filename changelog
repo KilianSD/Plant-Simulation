@@ -1,0 +1,7 @@
+# Changelog
+
+## [1.0.0] - 2023-02-05
+- New Flower, Fruit and Vegetable class in inheritance chain (Plant -> Flower -> Rose) or (Plant -> Fruit -> Strawberry).
+- New Color class comes with HSL, HEX and RGB constructor, a bunch of cool functions like invertColor, getRandomColor. 
+## [1.0.0] - 2023-02-07
+- Single Responsibility Principle concept followed for the Color class, instead we separated the HEX, RGB and HSL into different classes, making the class more readable, maintainable, understandable and flexible.
