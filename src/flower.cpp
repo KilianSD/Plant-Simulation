@@ -10,6 +10,7 @@
  */
 
 #include "../include/flower.h"
+#include <sqlite3.h>
 
 Flower::Flower(sqlite3* db, const std::string& plant_name) : Plant(db, plant_name, "Flower"){
 
