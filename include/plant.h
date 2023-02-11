@@ -14,7 +14,7 @@
 
 #include <string>
 #include <iostream>
-#include "sqlite3.h"
+#include <sqlite3.h>
 #include "date.h"
 #include "species.h"
 
