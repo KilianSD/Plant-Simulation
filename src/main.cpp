@@ -41,15 +41,16 @@ int main(int argc, char** argv){
     sqlite3* db = open_db();
     DateTime CurrentDate = get_current_date();
 
-    std::cout << "HERE" << std::endl;
     DiscordUser discordUser;
     Color col;
     while(true){
-        Image image(256, 256, col);
-        image.writePNG("colors/" + col.getHex() + ".png");
-        discordUser.sendWebhookMessageColor(col);
-        col.randomizeColor();
-        std::this_thread::sleep_for(std::chrono::seconds(60));
+        for(int i = 0; i < 10; i++){
+            Image image(256, 256, col);
+            image.writePNG("colors/" + col.getHex() + ".png");
+            discordUser.sendWebhookMessageColor(col);
+            col.randomizeColor();
+        }
+        std::this_thread::sleep_for(std::chrono::seconds(20));
     }
     Color c;
 

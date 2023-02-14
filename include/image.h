@@ -1,5 +1,5 @@
 #include "color.h"
-#include "lodepng.h"
+#include <lodepng.h>
 
 class Image {
 public: 

@@ -13,9 +13,9 @@ STATIC
 
 find_package(lodepng CONFIG REQUIRED)
 find_package(unofficial-sqlite3 CONFIG REQUIRED)
-message(${unofficial-sqlite3_FOUND})
 find_package(dpp CONFIG REQUIRED)
 
+include_directories(C:/vcpkg/installed/${VCPKG_TARGET_TRIPLET}/include)
 add_executable(PlantSimulation ./src/main.cpp)
 
 target_link_libraries(PlantSimulation PRIVATE unofficial::sqlite3::sqlite3 dpp::dpp lodepng PlantSimulationHeaders)

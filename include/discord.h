@@ -10,7 +10,7 @@ public:
 	    bot.on_log(dpp::utility::cout_logger());
 	 
 	    /* construct a webhook object using the URL you got from Discord */
-	    dpp::webhook wh("https://discord.com/api/webhooks/1073598430502469682/MllRu5lwCEqoaXuvEFEkY8Omshl68FbT9QUb7kv-_65BCL7xU4jHbAdjvFb1innctsMc");
+	    dpp::webhook wh("https://discord.com/api/webhooks/1074555926985584690/f8xKGwxoEP3bdOE2uAl-pHwVPI4UELQxbR-hPT6qttnsiw6oUsTME8Uqb-Yt7mL9Q5sN");
 	 
 	 	dpp::message msg("I Just Generated this Color : " + color.getHex());
 		msg.add_file("color.png", dpp::utility::read_file("colors/" + color.getHex() + ".png"));
