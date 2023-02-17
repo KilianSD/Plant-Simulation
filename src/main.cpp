@@ -97,6 +97,7 @@ int main(int argc, char** argv){
 
     std::unique_ptr<Rose> r = std::make_unique<Rose>(db);
     r->startBloomNow();
+    std::this_thread::sleep_for(std::chrono::seconds(5));
     if(r->isBloomPhase()) {
         std::cout << "Rose is Blooming !" << std::endl;
     } else {

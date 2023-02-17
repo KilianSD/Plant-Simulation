@@ -62,7 +62,7 @@ public:
     void setWaterSchedule(unsigned int water_schedule) { this->water_schedule = water_schedule; }
     void setFertilizationSchedule(unsigned int fertilization_schedule) { this->fertilization_schedule = fertilization_schedule; }
     void setPruningSchedule(unsigned int pruning_schedule) { this->pruning_schedule = pruning_schedule; }
-    void setFloweringDate(DateTime& date) { this->flowering_date = date; }
+    void setFloweringDate(DateTime date) { this->flowering_date = date; }
     // Virtual Functions
     // virtual bool isRipe() = 0; // the fact of putting = 0 after the virtual function declaration says that we want it to be a pure virtual function that is defined to be overwritten.
     // virtual bool needsWater() = 0;

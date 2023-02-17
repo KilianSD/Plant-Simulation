@@ -5,4 +5,6 @@
 - New Color class comes with HSL, HEX and RGB constructor, a bunch of cool functions like invertColor, getRandomColor. 
 ## [1.0.0] - 2023-02-07
 - Single Responsibility Principle concept followed for the Color class, instead we separated the HEX, RGB and HSL into different classes, making the class more readable, maintainable, understandable and flexible.
-- Change get_day_difference() so that it returns the difference in seconds instead of in days, this'll be more useful to check if we're currently blooming or not, because if we set it in days we need to wait a day before being able to check if we started the blooming, while if we check it in seconds, we can immediately know whenever we want if we are blooming or not.
+- Change get_day_difference() so that it returns the difference in seconds instead of in days, this'll be more useful to check if we're currently blooming or not, because if we set it in days we need to wait a day before being able to check if we started the blooming, while if we check it in seconds, we can immediately know if we are blooming or not.
+- New Container class inheriting from std::vector, this class will be useful to avoid out_of_range errors, but modifying the "[]" operator we can make it throw an error if we are trying to subscript a value out of range.
+- The Program now uses VCPKG and CMake for its dependencies.
