@@ -9,7 +9,7 @@
  * 
  */
 
-#include "../include/color.h"
+#include "color.h"
 
 const Color Color::color_black = Color(RGB(0, 0, 0));
 const Color Color::color_white = Color(RGB(255, 255, 255));
@@ -17,22 +17,36 @@ const Color Color::color_red = Color(RGB(255, 0, 0));
 const Color Color::color_blue = Color(RGB(0, 255, 0));
 const Color Color::color_green = Color(RGB(0, 0, 255));
 
+
+/// @brief Add two colors with a maximum value limit of 255 and a minimum value limit of 0
+/// @param other the color we want to add to the current class values
+/// @return returns a Color object
 Color Color::operator+(const Color& other) const {
-    return Color(RGB(rgb.red + other.rgb.red, rgb.green + other.rgb.green, rgb.blue + other.rgb.blue));
+    return Color(RGB((rgb.red + other.rgb.red) % (255 + 1), (rgb.green + other.rgb.green) % (255 + 1), (rgb.blue + other.rgb.blue) % (255 + 1)));
 }
 
+/// @brief Substract two colors with a maximum value limit of 255 and a minimum value limit of 0
+/// @param other the color we want to add to the current class values
+/// @return returns a Color object
 Color Color::operator-(const Color& other) const {
-    return Color(RGB(rgb.red - other.rgb.red, rgb.green - other.rgb.green, rgb.blue - other.rgb.blue));
+    return Color(RGB((rgb.red - other.rgb.red) % (255 + 1), (rgb.green - other.rgb.green) % (255 + 1), (rgb.blue - other.rgb.blue) % (255 + 1)));
 }
 
+/// @brief Verify if two colors are equal, two colors are equal if the R, G and B values are equal.
+/// @param other the Color object we want to compare with
+/// @return true if they are equal, otherwise returns false
 bool Color::operator==(const Color& other) const {
     return rgb.red == other.rgb.red && rgb.blue == other.rgb.blue && rgb.green == other.rgb.green;
 }
 
+/// @brief Verify if two colors are different, two colors are different if atleast one value of R, G or B are unequal 
+/// @param other the Color object we want to compare with
+/// @return true if they are different, otherwise returns false
 bool Color::operator!=(const Color& other) const {
     return rgb.red != other.rgb.red || rgb.blue != other.rgb.blue || rgb.green != other.rgb.green;
 }
 
+/// @brief Color class default constructor, since we do no specify any value for R, G, or B we decided to randomly generate one. This could be modified in the future for a white blank color (0, 0, 0).
 Color::Color(){
     // For now, we'll set that our default constructor chooses a random color.
     randomizeColor();
@@ -40,34 +54,42 @@ Color::Color(){
     convertRGBtoHSL();
 }
 
-// RGB Constructor
+/// @brief Color class RGB constructor
+/// @param r RGB value (RGB)
 Color::Color(RGB r) : rgb(r) {
     convertRGBtoHEX();
     convertRGBtoHSL();
 }
 
-// HSL Constructor
+/// @brief Color class HSL constructor
+/// @param h HSL value (HSL)
 Color::Color(HSL h) : hsl(h) {
     convertHSLtoRGB();
     convertRGBtoHEX();
 }
 
-// Hex Constructor
+/// @brief Color class HEX constructor
+/// @param h HEX value (std::string)
 Color::Color(HEX h) : hex(h){
     convertHEXtoRGB();
     convertRGBtoHSL();
 }
 
+/// @brief Output a Color using it's hex representation
+/// @param os stream
+/// @param c Color
+/// @return stream
 std::ostream& operator<<(std::ostream& os, const Color& c){
     return os << c.getHex();
 }
 
+
 Color Color::mixColors(const Color& color1, const Color& color2){
-    return Color(RGB((color1.rgb.red + color2.rgb.red) / 2, (color1.rgb.green + color2.rgb.green) / 2, (color1.rgb.blue + color2.rgb.blue) / 2));
+    return Color(RGB(((color1.rgb.red + color2.rgb.red) / 2) % (255 + 1), ((color1.rgb.green + color2.rgb.green) / 2) % (255 + 1), ((color1.rgb.blue + color2.rgb.blue) / 2) % (255 + 1)));
 }
 
 Color Color::blendColors(const Color& other) {
-    return Color(RGB((this->rgb.red + other.rgb.red) / 2, (this->rgb.green + other.rgb.green) / 2, (this->rgb.blue + other.rgb.blue) / 2));
+    return Color(RGB(((this->rgb.red + other.rgb.red) / 2) % (255 + 1), ((this->rgb.green + other.rgb.green) / 2) % (255 + 1), ((this->rgb.blue + other.rgb.blue) / 2) % (255 + 1)));
 }
 
 std::string padHexString(int value){

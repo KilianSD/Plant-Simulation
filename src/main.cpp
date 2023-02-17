@@ -9,15 +9,17 @@
  * 
  */
 
-#include "../include/plants_include.h"
-#include "../include/date.h"
-#include "../include/color.h"
-#include "../include/image.h"
+#include "plants_include.h"
+#include "date.h"
+#include "color.h"
+#include "image.h"
 #include <dpp/dpp.h>
-#include "../include/discord.h"
+#include "discord.h"
 #include <memory>
+#include <stdexcept>
 #include <chrono>
 #include <thread>
+#include "container.h"
 
 /**
  * @brief open local SQLite3 database so we can work with data appropriately.
@@ -32,7 +34,7 @@ sqlite3* open_db(){
         sqlite3_close(db);
         exit(-1);
     }
-    std::cout << "DATABASE OPENED !" << std::endl;
+
     return db;
 }
 
@@ -41,14 +43,39 @@ int main(int argc, char** argv){
     sqlite3* db = open_db();
     DateTime CurrentDate = get_current_date();
 
+    Container<Color*> v;
+    for(int i = 0; i < 10; i++){
+        v.push_back(new Color);
+    }
+
+    try {
+        auto s = v[10];
+        std::cout << "VALUE : " << s << std::endl;
+    } catch(std::out_of_range){
+        std::cout << "Trying to subscript a out-of-bound value from a vector" << std::endl;
+    } catch(...){
+        std::cout << "Something went wrong when trying to subscript a value from a vector" << std::endl;
+    }
+
+    for(int i = 0; i < 10; i++){
+        std::cout << "FREEING : " << &v[i] << std::endl;
+        delete v[i];
+    }
+
     DiscordUser discordUser;
     Color col;
+
+    // Lets continuously allocate heap objects without freeing them to see the impact on our computer memory.
     while(true){
+        Color* col = new Color;
         for(int i = 0; i < 10; i++){
-            Image image(256, 256, col);
-            image.writePNG("colors/" + col.getHex() + ".png");
-            discordUser.sendWebhookMessageColor(col);
-            col.randomizeColor();
+            Image image(256, 256, *col);
+            std::cout << "1" << std::endl;
+            image.writePNG("colors/" + col->getHex() + ".png");
+            std::cout << "2" << std::endl;
+            discordUser.sendWebhookMessageColor(*col);
+            std::cout << "3" << std::endl;
+            col->randomizeColor();
         }
         std::this_thread::sleep_for(std::chrono::seconds(20));
     }
@@ -69,7 +96,7 @@ int main(int argc, char** argv){
     }
 
     std::unique_ptr<Rose> r = std::make_unique<Rose>(db);
-    r->startBloomAtDate(DateTime(2023, 1, 1, 0, 0, 0));
+    r->startBloomAtDate(get_current_date());
     if(r->isBloomPhase()) std::cout << "Rose is Blooming !" << std::endl;
     // std::unique_ptr<Tomato> t = std::make_unique<Tomato>(db);
     // std::unique_ptr<Banana> b = std::make_unique<Banana>(db);

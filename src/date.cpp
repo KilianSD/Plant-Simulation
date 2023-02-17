@@ -9,7 +9,7 @@
  * 
  */
 
-#include "../include/date.h"
+#include "date.h"
 
 /**
  * @brief get DateTime structure as a string that represent the current date.
@@ -58,7 +58,7 @@ bool DateTime::is_leap(){
  * 
  * @return DateTime filled with the current date data.
  */
-DateTime get_current_date(){
+DateTime& get_current_date(){
     DateTime d;
     time_t t = time(0);
     tm *now = localtime(&t);
@@ -70,7 +70,6 @@ DateTime get_current_date(){
     d.setMinute(now->tm_min);
     d.setSecond(now->tm_sec);
     d.setDayOfWeek((Weekday)now->tm_mday);
-    std::cout << "CURRENT DAY GOTTEN !" << std::endl;
     return d; 
 }
 

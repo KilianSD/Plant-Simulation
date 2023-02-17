@@ -9,7 +9,7 @@
  * 
  */
 
-#include "../include/vegetable.h"
+#include "vegetable.h"
 
 Vegetable::Vegetable(sqlite3* db, const std::string& plant_name) : Plant(db, plant_name, "Vegetable"){
 

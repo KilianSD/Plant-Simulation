@@ -9,7 +9,7 @@
  * 
  */
 
-#include "../include/fruit.h"
+#include "fruit.h"
 
 Fruit::Fruit(sqlite3* db, const std::string& plant_name) : Plant(db, plant_name, "Fruit"){
 
