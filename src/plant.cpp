@@ -9,7 +9,7 @@
  * 
  */
 
-#include "../include/plant.h"
+#include "plant.h"
 
 /**
  * @brief Construct a new Plant:: Plant object

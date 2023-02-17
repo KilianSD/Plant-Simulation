@@ -87,7 +87,7 @@ private:
     Weekday day_of_week;
 };
 
-DateTime get_current_date();
+DateTime& get_current_date();
 int get_day_difference(const DateTime& d1, const DateTime& d2);
 
 #endif
