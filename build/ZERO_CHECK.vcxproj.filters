@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\User\Desktop\2023\Programming 2023\Plant Simulation\build\CMakeFiles\6233c795c4e47d4bb99c4f3e5f64b785\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{85E94AD3-C1BD-3826-B51B-25E5405D957E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

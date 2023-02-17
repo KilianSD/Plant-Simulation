@@ -58,7 +58,7 @@ bool DateTime::is_leap(){
  * 
  * @return DateTime filled with the current date data.
  */
-DateTime& get_current_date(){
+DateTime get_current_date(){
     DateTime d;
     time_t t = time(0);
     tm *now = localtime(&t);
@@ -110,4 +110,44 @@ int get_day_difference(const DateTime& d1, const DateTime& d2){
     }
 
     return (t1 - t2) / 86400;
+}
+
+/**
+ * @brief calculate the difference in seconds between two dates.
+ * 
+ * @param d1 date one.
+ * @param d2  date two.
+ * @return int representing the difference in seconds.
+ */
+int get_second_difference(const DateTime& d1, const DateTime& d2){
+    struct tm tm1, tm2;
+    std::time_t t1, t2;
+    
+    // set tm1 from d1
+    
+    tm1.tm_year = d1.getYear() - 1900;
+    tm1.tm_mon = d1.getMonth() - 1;
+    tm1.tm_mday = d1.getDay();
+    tm1.tm_hour = d1.getHour();
+    tm1.tm_min = d1.getMinute();
+    tm1.tm_sec = d1.getSecond();
+    tm1.tm_isdst = -1;
+
+    // set tm2 from d2
+    tm2.tm_year = d2.getYear() - 1900;
+    tm2.tm_mon = d2.getMonth() - 1;
+    tm2.tm_mday = d2.getDay();
+    tm2.tm_hour = d2.getHour();
+    tm2.tm_min = d2.getMinute();
+    tm2.tm_sec = d2.getSecond();
+    tm2.tm_isdst = -1;
+
+    t1 = std::mktime(&tm1);
+    t2 = std::mktime(&tm2);
+    if(t1 == -1 || t2 == -1){
+        return -1;
+    }
+
+    std::cout << static_cast<int>(std::difftime(t1, t2)) << std::endl;
+    return static_cast<int>(std::difftime(t1, t2));
 }

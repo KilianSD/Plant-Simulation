@@ -66,7 +66,7 @@ int main(int argc, char** argv){
     Color col;
 
     // Lets continuously allocate heap objects without freeing them to see the impact on our computer memory.
-    while(true){
+    /*while(true){
         Color* col = new Color;
         for(int i = 0; i < 10; i++){
             Image image(256, 256, *col);
@@ -78,7 +78,7 @@ int main(int argc, char** argv){
             col->randomizeColor();
         }
         std::this_thread::sleep_for(std::chrono::seconds(20));
-    }
+    }*/
     Color c;
 
     std::cout << "Color (Before Random Generation) (RGB) : (" << c.getRed() << ", " << c.getGreen() << ", " << c.getBlue() << ")" << "\n";
@@ -96,8 +96,12 @@ int main(int argc, char** argv){
     }
 
     std::unique_ptr<Rose> r = std::make_unique<Rose>(db);
-    r->startBloomAtDate(get_current_date());
-    if(r->isBloomPhase()) std::cout << "Rose is Blooming !" << std::endl;
+    r->startBloomNow();
+    if(r->isBloomPhase()) {
+        std::cout << "Rose is Blooming !" << std::endl;
+    } else {
+        std::cout << "Rose is not Blooming !" << std::endl;
+    }
     // std::unique_ptr<Tomato> t = std::make_unique<Tomato>(db);
     // std::unique_ptr<Banana> b = std::make_unique<Banana>(db);
     // std::unique_ptr<Lime> l = std::make_unique<Lime>(db);

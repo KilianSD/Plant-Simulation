@@ -25,7 +25,7 @@ void Flower::startBloomAtDate(DateTime& date){
 }
 
 bool Flower::isBloomPhase(){
-    return get_day_difference(get_current_date(), getFloweringDate()) > 0;
+    return get_second_difference(get_current_date(), getFloweringDate()) > 0;
 }
 
 /**

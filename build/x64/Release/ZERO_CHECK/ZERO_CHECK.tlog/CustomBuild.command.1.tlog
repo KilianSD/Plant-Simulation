@@ -1,0 +1,10 @@
+^C:\USERS\USER\DESKTOP\2023\PROGRAMMING 2023\PLANT SIMULATION\BUILD\CMAKEFILES\6233C795C4E47D4BB99C4F3E5F64B785\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/User/Desktop/2023/Programming 2023/Plant Simulation" "-BC:/Users/User/Desktop/2023/Programming 2023/Plant Simulation/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/User/Desktop/2023/Programming 2023/Plant Simulation/build/PlantSimulation.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
